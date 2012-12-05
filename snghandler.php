@@ -473,7 +473,9 @@ class SngHandler {
 	}
 
 	
-	
+	const ZENITH = 90.833333333;//90+50/60;
+	const OFFSET = 0;//TODO: need to correct it according to long lat passed 	
+
 	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getTodayInfo", "params": {"country-code":"pl", "location": [52.2300, 21.0108], "days-ahead":4}, "id": 1}' http://5.175.186.227/sngserver.php
 	public function getTodayInfo($params) {
 //		var_dump($params);
@@ -499,13 +501,16 @@ class SngHandler {
 			if ($daysCount > 10) {
 				$daysCount = 10;
 			}
+			$lat = $params[location][0];
+			$long = $params[location][1];
 			$sunArray = array();
 			for ($i = 0; $i < $daysCount; $i++) {
 				$date->add(new DateInterval('P1D'));
+				$timestamp = $date->getTimestamp();
 				$tempArray = array (
 					"date" => $date->format('Y-m-d'),
-					"sunrise" => "6:03",
-            				"sunset" => "19:16");
+					"sunrise" => date_sunrise($timestamp, SUNFUNCS_RET_STRING, $lat, $long, SngHandler::ZENITH, SngHandler::OFFSET),
+            				"sunset" => date_sunset($timestamp, SUNFUNCS_RET_STRING, $lat, $long, SngHandler::ZENITH, SngHandler::OFFSET));
 				array_push($sunArray, $tempArray);					
 			}
 			
