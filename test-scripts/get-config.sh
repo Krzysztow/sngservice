@@ -33,4 +33,4 @@ fi;
 
 checkIfSngServerSet;
 
-curl -H "Content-type: application/json" -X POST -d " {\"method\": \"getConfig\", \"params\": {\"id\": $PANEL_ID, \"filteredModules\": $MODULES_LIST}, \"id\": 1}"  $SNG_SERVER_PATH
+curl -H "Content-type: application/json" -X POST -d " {\"method\": \"getConfig\", \"params\": {\"id\": \"$PANEL_ID\", \"filteredModules\": $MODULES_LIST}, \"id\": 1}"  $SNG_SERVER_PATH

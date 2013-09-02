@@ -478,6 +478,7 @@ class SngHandler {
 
 	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getTodayInfo", "params": {"country-code":"pl", "location": [52.2300, 21.0108], "days-ahead":4}, "id": 1}' http://5.175.186.227/sngserver.php
 	public function getTodayInfo($params) {
+		date_default_timezone_set("Europe/Warsaw");
 //		var_dump($params);
 //		echo "location exists "; var_dump(array_key_exists("location", $params));
 
