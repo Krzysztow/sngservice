@@ -535,7 +535,7 @@ class SngHandler {
 		}	
 	}
 	
-	//usef for getAvailablePanels and getPanelConfig
+	//usef data for getAvailablePanels and getPanelConfig
 	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getAvailablePanels", "params": null, "id": 1}'  $SNG_SERVER_PATH
 	private $availablePanels = array (
 	    array (
@@ -586,15 +586,13 @@ class SngHandler {
         return $this->availablePanels;
 	}
 	
-	//
+	//gets config of the specified panel (by panelId)
 	public function getConfig($param) {
 		if (array_key_exists("id", $param)) {	
 	        $panelId = $param["id"];
 	        if (array_key_exists($panelId, $this->panelsConfig)) {	
 	            $response = array();
 	           
-			echo getcwd() . "\n";
- 
 	            $panelConfigDef = $this->panelsConfig[$panelId];
 	            foreach ($panelConfigDef as $moduleConfigDef) {
                     $mType = $moduleConfigDef["type"];
@@ -607,7 +605,6 @@ class SngHandler {
                         $fPath .= "modules/".$mType."/".$mName;
                     }
                     
-                    echo "Opening".$fPath." ";
                     $fHandle = fopen($fPath, "r");
                     if (false == $fHandle) {
                         echo "Can't open ".$fPath;
@@ -637,5 +634,28 @@ class SngHandler {
 		}
 	}
 	
+	//here we fix the time-function configuration target. However
+	//we could use some cookie set when panel taken and then get appropriate
+	//timefunction config.
+	public function getTimeFunctions($param) {
+	    $panelId = "SNGTouchG1-20121109-104148";//this should be taken by cookie
+	    $fPath = "./demo-configs/".$panelId."/basic-timefunctions/config-timefunctions.xml";
+	    $fHandle = fopen($fPath, "r");
+	    $response = array();
+        if (false == $fHandle) {
+            echo "Can't open ".$fPath;
+        }
+        else {
+            echo $fPath." \r\n";
+            $response["states"] = array();
+            $response["config"] = "";
+            while (!feof($fHandle)) {
+                $response["config"] .= fread($fHandle, 8192);
+            }
+            fclose($fHandle);
+        }
+        
+        return $response;
+    }
 }
 ?>
