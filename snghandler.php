@@ -531,5 +531,98 @@ class SngHandler {
 			throw new Exception('Invalid parameter '.$param[0]);
 		}	
 	}
+	
+	//usef for getAvailablePanels and getPanelConfig
+	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getAvailablePanels", "params": null, "id": 1}'  $SNG_SERVER_PATH
+	private $availablePanels = array (
+	    array (
+            "panelName" => "Demo 1",
+            "id" => 1,
+            "configChangeDate" => "2013-09-01T00:32:12"
+	            ),
+        array (
+            "panelName" => "Demo 2",
+            "id" => 2,
+            "configChangeDate" => "2013-09-01T00:32:12"
+        ),
+	   
+	);
+	
+	private $panelsConfig = array (
+        1 => array (
+            array (
+                "type" => "main",
+                "name" => "config-sngtouchg1.xml",
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base.xml"
+                )
+            ),
+        2 => array (
+            array (
+                "type" => "main",
+                "name" => "config-sngtouchg1.xml",
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base.xml"
+                )
+            )
+    );
+	
+	public function getAvailablePanels($param) {
+        return $this->availablePanels;
+	}
+	
+	//
+	public function getConfig($param) {
+		if (array_key_exists("id", $param)) {	
+	        $panelId = $param["id"];
+	        if (array_key_exists($panelId, $this->panelsConfig)) {	
+	            $response = array();
+	            
+	            $panelConfigDef = $this->panelsConfig[$panelId];
+	            foreach ($panelConfigDef as $moduleConfigDef) {
+                    $mType = $moduleConfigDef["type"];
+                    $mName = $moduleConfigDef["name"];
+                    $fPath = "./demo-configs/".$panelId."/";
+                    if ("main" == $mType) {
+                        $fPath .= $mName;
+                    }
+                    else {
+                        $fPath .= "modules/".$mType."/".$mName;
+                    }
+                    
+                    echo "Opening".$fPath." ";
+                    $fHandle = fopen($fPath, "r");
+                    if (false == $fHandle) {
+                        echo "Can't open ".$fPath;
+                    }
+                    else {
+                        $mPartResp = array();
+                        $mPartResp["type"] = $mType;
+                        $mPartResp["name"] = $mName;
+                        $mPartResp["config"] = "";
+	                    while (!feof($fHandle)) {
+                            $mPartResp["config"] .= fread($fHandle, 8192);
+	                    }
+                        fclose($fHandle);
+                        
+                        array_push($response, $mPartResp);
+                    }
+	            }
+                
+                return $response;
+	        }
+	        else {
+	            throw new Exception('Invalid panel id '.$panelId);
+	        }
+		}
+		else {
+		    throw new Exception('Invalid parameter '.$param[0]);
+		}
+	}
+	
 }
 ?>
