@@ -536,20 +536,14 @@ class SngHandler {
 	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getAvailablePanels", "params": null, "id": 1}'  $SNG_SERVER_PATH
 	private $availablePanels = array (
 	    array (
-            "panelName" => "Demo 1",
-            "id" => 1,
-            "configChangeDate" => "2013-09-01T00:32:12"
-	            ),
-        array (
-            "panelName" => "Demo 2",
-            "id" => 2,
-            "configChangeDate" => "2013-09-01T00:32:12"
-        ),
-	   
+		    "panelName" => "Demo 1",
+		    "id" => "SNGTouchG1-20121109-104148",
+		    "configChangeDate" => "2013-09-01T00:32:12"
+	    )
 	);
 	
 	private $panelsConfig = array (
-        1 => array (
+        "SNGTouchG1-20121109-104148" => array (
             array (
                 "type" => "main",
                 "name" => "config-sngtouchg1.xml",
@@ -557,16 +551,30 @@ class SngHandler {
             array (
                 "type" => "listdetail",
                 "name" => "config-base.xml"
-                )
-            ),
-        2 => array (
-            array (
-                "type" => "main",
-                "name" => "config-sngtouchg1.xml",
                 ),
             array (
                 "type" => "listdetail",
-                "name" => "config-base.xml"
+                "name" => "config-base-20121109-132726.xml"
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base-20121109-140043.xml"
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base-20121109-140636.xml"
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base-20121112-111913.xml"
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base-20121128-092629.xml"
+                ),
+            array (
+                "type" => "listdetail",
+                "name" => "config-base-20121128-092951.xml"
                 )
             )
     );

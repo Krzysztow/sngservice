@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<config icons="pl-base" id="base" name="Ustawienia">
+  <page synchronize="false" installer="" site-url="" company="" header="Ustaw date/godzinę" email="" id="1" module="DateAndTime" phone-number=""/>
+  <page synchronize="false" installer="" site-url="www.synergiatech.eu" company="Synergia Tech" header="Twój instalator" email="" id="2" module="Instalator" phone-number=""/>
+  <page synchronize="false" installer="" site-url="" company="" header="Informacje IP" email="" id="3" module="IPSetting" phone-number=""/>
+</config>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<config screensaver-time1="1" screensaver-time2="2" commserver-port="8888" id="SNGTouchG1-20121109-104148" local-soundinput="/built-in-mic" name="Nowy panel" default-module="controll(base)" local-soundoutput1="/lineout" local-soundoutput2="/speaker" panelType="SNGTouchG1" default-soundoutput="mmio://localhost/lineout" ip="192.168.1.70" commserver-ip="localhost" style-name="style-black" screensaver-name="screensavers" screensavers-type="analog-clock" physical-address="2.3.4" screensavers-pictureviewer-interval="5" bits-per-pixel="32" screensavers-pictureviewer-dir="./pictures">
+  <modules>
+    <module dir="listdetail" config="base"/>
+    <module dir="settings" config="base"/>
+    <module dir="listdetail" config="base-20121109-132726"/>
+    <module dir="memo" config="base-20121109-135854"/>
+    <module dir="weather" config="base-20121109-135904"/>
+    <module dir="date" config="base-20121109-135913"/>
+    <module dir="listdetail" config="base-20121109-140043"/>
+    <module dir="listdetail" config="base-20121109-140636"/>
+    <module dir="listdetail" config="base-20121112-111913"/>
+    <module dir="listdetail" config="base-20121128-092629"/>
+    <module dir="listdetail" config="base-20121128-092951"/>
+    <module dir="radio" config="base-20121212-165807"/>
+  </modules>
+  <menu>
+    <module name="listdetail(base)"/>
+    <module name="listdetail(base-20121128-092629)"/>
+    <module name="listdetail(base-20121112-111913)"/>
+    <module name="listdetail(base-20121128-092951)"/>
+    <module name="settings(base)"/>
+    <module name="listdetail(base-20121109-132726)"/>
+    <module name="listdetail(base-20121109-140636)"/>
+    <module name="memo(base-20121109-135854)"/>
+    <module name="listdetail(base-20121109-140043)"/>
+    <module name="weather(base-20121109-135904)"/>
+    <module name="date(base-20121109-135913)"/>
+    <module name="radio(base-20121212-165807)"/>
+  </menu>
+</config>

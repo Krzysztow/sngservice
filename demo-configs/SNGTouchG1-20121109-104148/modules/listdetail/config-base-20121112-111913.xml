@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<config icons="pl-timefunctions" id="base-20121112-111913" name="Funkcje czasowe">
+  <page header="Funkcje czasowe" max-children-count="6" id="1" r="3">
+    <button id="0" address-temp-setpoint-set="" buttonType="sendValue" address-cooling-feedback="" address-shutter-step="" address-mode-set="" address-shutter-move="" header="Lampa &#xa;w wejściu" description="Opis" link-protocol="lnaction" address-value-set="0/0/15" value-0="1" default-current-temp="20" default-operation-mode="" address-value-feedback="" address-heating-feedback="" model="SendValueModel" address-onoff-feedback="" details="None" address-heatcool-set="" type-0="Value" button="BlinkingButtonView" valueCase="On" address-temp-current-feedback="" address-onoff-set=""/>
+  </page>
+</config>

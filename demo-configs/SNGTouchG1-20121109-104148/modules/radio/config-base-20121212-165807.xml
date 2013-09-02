@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<config icons="pl-base" hqurl="http://gr-relay-18.gaduradio.pl/" id="base-20121212-165807" name="Radio internetowe" output-url="mmio://localhost/speaker" hqchannels="1,2,3,4,5,6,7,13,14,25,28,35,41,42,50,52,55,60,63"/>
