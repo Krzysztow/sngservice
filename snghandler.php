@@ -1,8 +1,10 @@
 <?php
 /**
- * An immaginative class. You can immagine a DB interface instead or what you want
- *
- * @author sergio <jsonrpcphp@inservibile.org>
+* Different servers used (SNG_SERVER_PATH):
+*	- at server.synergiatech.pl:
+* 		http://server.synergiatech.pl:8080/sngdayservice/sngserver.php
+* 	- at cloud 9:
+*		http://sngservice_1.krzysztow.c9.io/sngserver.php
  */
 class SngHandler {
 	/**
@@ -434,7 +436,7 @@ class SngHandler {
 	/**
 	 * An immaginative private method.
 	 * Since it is a private method, it WILL NOT be served as RPC.
-	 * curl -H "Content-type: application/json" -X POST -d ' {"method": "login", "params": {"user": "snguser", "password": "sngpassword"}, "id": 1}' http://5.175.186.227/sngserver.php
+	 * curl -H "Content-type: application/json" -X POST -d ' {"method": "login", "params": {"user": "snguser", "password": "sngpassword"}, "id": 1}' $SNG_SERVER_PATH
 	 * @param integer $min
 	 * @param integer $max
 	 * @return integer
@@ -456,7 +458,7 @@ class SngHandler {
 	 * If you want to plug out this method, extend this class with a dummy method.
 	 * 
 	 * This method returns a significative value and must be implemented as a RPC request.
-	 * curl -H "Content-type: application/json" -X POST -d ' {"method": "giveMeSomeData", "params": ["name"], "id": 1}' http://5.175.186.227/sngserver.php
+	 * curl -H "Content-type: application/json" -X POST -d ' {"method": "giveMeSomeData", "params": ["name"], "id": 1}' $SNG_SERVER_PATH
 	 * @param string $param
 	 * @return mixed
 	 */
@@ -476,7 +478,7 @@ class SngHandler {
 	const ZENITH = 90.833333333;//90+50/60;
 	const OFFSET = 0;//TODO: need to correct it according to long lat passed 	
 
-	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getTodayInfo", "params": {"country-code":"pl", "location": [52.2300, 21.0108], "days-ahead":4}, "id": 1}' http://5.175.186.227/sngserver.php
+	//curl -H "Content-type: application/json" -X POST -d ' {"method": "getTodayInfo", "params": {"country-code":"pl", "location": [52.2300, 21.0108], "days-ahead":4}, "id": 1}' $SNG_SERVER_PATH
 	public function getTodayInfo($params) {
 		date_default_timezone_set("Europe/Warsaw");
 //		var_dump($params);
@@ -590,7 +592,9 @@ class SngHandler {
 	        $panelId = $param["id"];
 	        if (array_key_exists($panelId, $this->panelsConfig)) {	
 	            $response = array();
-	            
+	           
+			echo getcwd() . "\n";
+ 
 	            $panelConfigDef = $this->panelsConfig[$panelId];
 	            foreach ($panelConfigDef as $moduleConfigDef) {
                     $mType = $moduleConfigDef["type"];
