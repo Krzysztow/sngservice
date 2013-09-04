@@ -433,23 +433,35 @@ class SngHandler {
 
 	);	
 
+    const AUTH_STRING = "authentication";
+
 	/**
 	 * An immaginative private method.
 	 * Since it is a private method, it WILL NOT be served as RPC.
-	 * curl -H "Content-type: application/json" -X POST -d ' {"method": "login", "params": {"user": "snguser", "password": "sngpassword"}, "id": 1}' $SNG_SERVER_PATH
+	 * curl -H "Content-type: application/json" -X POST -d ' {"method": "login", "params": {"authentication": {"user": "snguser","password": "sngpassword"}}, "id": 1}' $SNG_SERVER_PATH
 	 * @param integer $min
 	 * @param integer $max
 	 * @return integer
 	 */
 	public function login($params) {
 		//var_dump($params);
-		$user=$params["user"];
-		$pass=$params["password"];
-		//echo"User ".$user." password ".$pass."\r\n";
-		if ($user == "snguser" AND $pass == "sngpassword") 
-			return true;
-		else 
-			throw new Exception('Error 20: Wrong login or password');
+		if (array_key_exists(SngHandler::AUTH_STRING, $params)) {
+		    $auth = $params[SngHandler::AUTH_STRING];
+    		$user = $auth["user"];
+    		$pass = $auth["password"];
+    		$sngId = rand();
+    		//echo"User ".$user." password ".$pass."\r\n";
+    		if ($user == "snguser" AND $pass == "sngpassword") { 
+    		    setcookie("SNGID", $sngId);
+    			return array (
+    			    "success" => true,
+    			    "sngid" => $sngId
+    			    );
+    		} else
+    		    throw new Exception('Error 20: Wrong login or password');
+    	}
+		
+		throw new Exception('Error 13: Missing element');
 	}
 	
 	/**
