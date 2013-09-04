@@ -4,4 +4,4 @@
 
 checkIfSngServerSet;
 
-curl -H "Content-type: application/json" -X POST -d ' {"method": "login", "params": {"user": "snguser", "password": "sngpassword"}, "id": 1}' $SNG_SERVER_PATH
+curl -H "Content-type: application/json" -X POST -d ' {"method": "login", "params": {"authentication": {"user": "snguser","password": "sngpassword"}}, "id": 1}' $SNG_SERVER_PATH
